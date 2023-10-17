@@ -1,0 +1,22 @@
+def szam_betuvel(szam):
+    szamok = {
+        0: 'nulla',
+        1: 'egy',
+        2: 'kettő',
+        3: 'három',
+        4: 'négy',
+        5: 'öt',
+        6: 'hat',
+        7: 'hét',
+        8: 'nyolc',
+        9: 'kilenc'
+    }
+
+    if szam in szamok:
+        return szamok[szam]
+    else:
+        return "Nem tudom leírni ezt a számot betűvel."
+
+# Példa használat:
+szam = 5
+print(szam_betuvel(szam))
