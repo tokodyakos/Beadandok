@@ -1,0 +1,35 @@
+def napok_szama(honap1, nap1, honap2, nap2):
+    if 1 <= honap1 <= 12 and 1 <= nap1 <= 31 and 1 <= honap2 <= 12 and 1 <= nap2 <= 31:
+        napok_per_honap = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+
+        napok1 = sum(napok_per_honap[:honap1 - 1]) + nap1
+        napok2 = sum(napok_per_honap[:honap2 - 1]) + nap2
+
+        if napok2 >= napok1:
+            eltelt_napok = napok2 - napok1
+            eltelt_honapok = eltelt_napok // 30
+            eltelt_napok = eltelt_napok % 30
+            return eltelt_honapok, eltelt_napok
+        else:
+            eltelt_napok = (365 + napok2 - napok1)
+            eltelt_honapok = eltelt_napok // 30
+            eltelt_napok = eltelt_napok % 30
+            if eltelt_napok == 0:
+                eltelt_honapok -= 1
+                eltelt_napok = 30
+            return eltelt_honapok, eltelt_napok
+    else:
+        return "Hibás dátumok! Próbálja újra..."
+
+honap1 = int(input("Adja meg az első hónapot: "))
+nap1 = int(input("Adja meg az első napot: "))
+honap2 = int(input("Adja meg a második hónapot: "))
+nap2 = int(input("Adja meg a második napot: "))
+
+eredmeny = napok_szama(honap1, nap1, honap2, nap2)
+if type(eredmeny) == tuple:
+    eltelt_honapok, eltelt_napok = eredmeny
+    print(f"Eltelt hónapok száma: {eltelt_honapok}")
+    print(f"Eltelt napok száma: {eltelt_napok}")
+else:
+    print(eredmeny)
