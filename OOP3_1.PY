@@ -47,4 +47,30 @@ class Konyvtar(Konyv):
         elem += [int(input("A könyv darabszáma:\n"))]
         
         self.books += [elem]
-    def find_book(self,)
+    def find_book(self, book_name):
+        i = 0
+        index = 0
+        while(i < len(self.books) and index == -1):
+            if (self.books[i][1][0] == book_name):
+                index = i
+                
+                for k in range(len(self.books[i][1])):
+                    print(self.printdata[k], self.books[i][1][0],"\n")
+            i += 1
+        if(index == -1):
+            print("A könyv nem létezik az adatbázisban...\n")
+            return -1
+        else: return index
+        
+    def del_book(self, book_name):
+        if(self.find_book(book_name) == -1):
+            print("A(z)", book_name," könyv nincs az adatbázisban...")
+        else:
+                del self.books[self.find_book(book_name)]
+        print(self.books)
+    
+    def list_books(self):
+        for i in range(len(self.books)):
+            for k in range(len(self.books[i][1])):
+                print(self.printdata[k], self.books[i][1][k], "\n")
+            print(self.printdata[-1], self.books[i][2], "\n")
