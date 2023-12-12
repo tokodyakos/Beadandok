@@ -1,0 +1,53 @@
+def is_alpha(char):
+    return ('A' <= char <= 'Z') or ('a' <= char <= 'z')
+
+def polibios_encode(text):
+    alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+    text = text.upper()
+    encoded_text = ""
+    for char in text:
+        if char == "J":
+            char = "I"
+        if is_alpha(char):
+            index = 0
+            for i in range(len(alphabet)):
+                if alphabet[i] == char:
+                    index = i + 1
+                    break
+            row = (index - 1) // 5 + 1
+            col = (index - 1) % 5 + 1
+            encoded_text += str(row) + str(col) + " "
+        else:
+            encoded_text += char + " "
+    if encoded_text:
+        encoded_text = encoded_text[:-1]
+    return encoded_text
+
+def polibios_decode(encoded_text):
+    alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+    decoded_text = ""
+    pairs = encoded_text.split()
+    for pair in pairs:
+        row = int(pair[0])
+        col = int(pair[1])
+        index = (row - 1) * 5 + col - 1
+        decoded_text += alphabet[index]
+    return decoded_text
+
+# Felhasználótól szöveg bekérése
+input_text = input("Kérem, adjon meg egy mondatot: ")
+
+# Kódolás és kiírás fájlba
+encoded_text = polibios_encode(input_text)
+with open("kodolt.txt", "w") as file:
+    file.write(encoded_text)
+
+# Fájlból olvasás és dekódolás
+with open("kodolt.txt", "r") as file:
+    encoded_text_from_file = file.read()
+
+decoded_text = polibios_decode(encoded_text_from_file)
+
+# Eredmények kiírása
+print("Kódolt szöveg:", encoded_text)
+print("Dekódolt szöveg:", decoded_text)
