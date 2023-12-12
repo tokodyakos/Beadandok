@@ -1,0 +1,23 @@
+def polibios_encode(text):
+    alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+    text = text.upper()
+    encoded_text = ""
+    for char in text:
+        if char == "J":
+            char = "I"
+        if is_alpha(char):
+            index = alphabet.index(char) + 1
+            row = (index - 1) // 5 + 1
+            col = (index - 1) % 5 + 1
+            encoded_text += str(row) + str(col) + " "
+        else:
+            encoded_text += char + " "
+    return encoded_text[:-1] if encoded_text else encoded_text
+
+# ...
+
+decoded_text = polibios_decode(encoded_text_from_file)
+
+# Eredmények kiírása
+print("Kódolt szöveg:", encoded_text)
+print("Dekódolt szöveg:", decoded_text)
