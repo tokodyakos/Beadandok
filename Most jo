@@ -1,0 +1,60 @@
+def polibios_encode(text):
+    text = text.upper()
+    encoded_text = ""
+    polibios_grid = [
+        ['A', 'B', 'C', 'D', 'E'],
+        ['F', 'G', 'H', 'I', 'K'],
+        ['L', 'M', 'N', 'O', 'P'],
+        ['Q', 'R', 'S', 'T', 'U'],
+        ['V', 'W', 'X', 'Y', 'Z']
+    ]
+
+    for char in text:
+        if char == "J":
+            char = "I"
+        if char.isalpha():
+            for i in range(5):
+                for j in range(5):
+                    if polibios_grid[i][j] == char:
+                        encoded_text += str(i + 1) + str(j + 1) + " "
+                        break
+        else:
+            encoded_text += char + " "
+
+    return encoded_text.rstrip()
+
+def polibios_decode(encoded_text):
+    decoded_text = ""
+    pairs = encoded_text.split()
+    polibios_grid = [
+        ['A', 'B', 'C', 'D', 'E'],
+        ['F', 'G', 'H', 'I', 'K'],
+        ['L', 'M', 'N', 'O', 'P'],
+        ['Q', 'R', 'S', 'T', 'U'],
+        ['V', 'W', 'X', 'Y', 'Z']
+    ]
+
+    for pair in pairs:
+        row = int(pair[0]) - 1
+        col = int(pair[1]) - 1
+        decoded_text += polibios_grid[row][col]
+
+    return decoded_text
+
+# Felhasználótól szöveg bekérése
+input_text = input("Kérem, adjon meg egy mondatot: ")
+
+# Kódolás és kiírás fájlba
+encoded_text = polibios_encode(input_text)
+with open("kodolt.txt", "w") as file:
+    file.write(encoded_text)
+
+# Fájlból olvasás és dekódolás
+with open("kodolt.txt", "r") as file:
+    encoded_text_from_file = file.read()
+
+decoded_text = polibios_decode(encoded_text_from_file)
+
+# Eredmények kiírása
+print("Kódolt szöveg:", encoded_text)
+print("Dekódolt szöveg:", decoded_text)
