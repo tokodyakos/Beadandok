@@ -1,0 +1,46 @@
+def polibios_encode(text):
+    alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+    text = text.upper()
+    encoded_text = ""
+    for char in text:
+        if char == "J":
+            char = "I"
+        if char.isalpha():
+            index = alphabet.index(char) + 1
+            row = (index - 1) // 5 + 1
+            col = (index - 1) % 5 + 1
+            encoded_text += str(row) + str(col) + " "
+        else:
+            encoded_text += char + " "
+    return encoded_text.rstrip()
+
+# Polübios dekódolás az angol ábécé betűivel
+def polibios_decode(encoded_text):
+    alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+    decoded_text = ""
+    pairs = encoded_text.split()
+    for pair in pairs:
+        row = int(pair[0])
+        col = int(pair[1])
+        index = (row - 1) * 5 + col - 1
+        char = alphabet[index]
+        decoded_text += char
+    return decoded_text
+
+# Felhasználótól szöveg bekérése
+input_text = input("Kérem, adjon meg egy mondatot: ")
+
+# Kódolás és kiírás fájlba
+encoded_text = polibios_encode(input_text)
+with open("kodolt.txt", "w") as file:
+    file.write(encoded_text)
+
+# Fájlból olvasás és dekódolás
+with open("kodolt.txt", "r") as file:
+    encoded_text_from_file = file.read()
+
+decoded_text = polibios_decode(encoded_text_from_file)
+
+# Eredmények kiírása
+print("Kódolt szöveg:", encoded_text)
+print("Dekódolt szöveg:", decoded_text)
