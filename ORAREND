@@ -1,0 +1,7 @@
+        orarend = {
+            'Hétfő': ['Angol', 'Töri', 'Irodalom', 'Fizika', 'Matek', 'Testnevelés'],
+            'Kedd': ['Hálózat', 'Hálózat', 'IKT', 'IKT', 'Hálózat', 'Hálózat', 'Ofő'],
+            'Szerda': ['Angol', 'Matek', 'Hálózat', 'Hálózat', 'Töri', 'Szakmai angol'],
+            'Csütörtök': ['Matek', 'Irodalom', 'IKT', 'Testnevelés', 'Magyar nyelv'],
+            'Péntek': ['Angol', 'Irodalom', 'Testnevelés', 'Fizika', 'Matek', 'Töri', 'Adatbázis', 'Adatbázis']
+        }
