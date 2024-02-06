@@ -1,0 +1,12 @@
+Események(Events)
+A kivy alkalmazás esemény vezérelt, ami azt jelenti hogy vagy a felhasználótól, vagy kódba beépített események hatására hajtódnak végre a kód egyes részei.
+	-Kétféle esemény generálás mód:
+
+			+ Óra esemény --> A felhasználótól függetlenül a kódba beépítetten generálódik az esemény.
+				Clock objektum meghívásával történik az óra esemény generálása.
+					a) Egyszer hívódik meg: schedule_once()
+					b) Ismétlődően hívjuk meg: shcedule_interval()
+					c) Másik feltételtől függően akarjuk az esemény kiváltását (triggerált esemény): create_trigger() metódussal.
+				A Clock objektumot a form kivy.clock import Clock
+			+
+			+
